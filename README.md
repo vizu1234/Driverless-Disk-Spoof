@@ -1,71 +1,74 @@
-# 🛡️ Driverless-Disk-Spoof (Decrypted Batch Edition)
-
-<p align="center">
-  <img src="https://img.shields.io/badge/OS-Windows%2010%20%2F%2011-blue?style=for-the-badge&logo=windows" alt="Windows">
-  <img src="https://img.shields.io/badge/Language-Batch%20(.bat)-orange?style=for-the-badge&logo=windows-terminal" alt="Batch">
-  <img src="https://img.shields.io/badge/Status-Fully%20Decrypted-success?style=for-the-badge" alt="Status">
-  <img src="https://img.shields.io/badge/Action-Serial%20Stripping-critical?style=for-the-badge" alt="Action">
-</p>
+# Driverless-Disk-Spoof (Decrypted Batch Edition)
 
 ---
 
-## 📌 Overview
+## Overview
 
-This repository hosts the **Driverless-Disk-Spoof**, a fully decrypted, native Windows batch script engineered to completely strip and remove disk serial identifiers at the system level rather than simply nulling them out. 
+This repository hosts the **Driverless-Disk-Spoof**, a fully decrypted Windows batch script designed to strip and clear disk serial identifiers during an active operating system session. 
 
 > [!NOTE]
-> This release is completely unencrypted and open for community inspection. It targets disk serial structures directly through native command-line workflows with zero complex setup required.
+> **Important Operating Behavior:** This is a **temporary (session-based)** spoof. The modifications applied by this script exist only within the current running state of the operating system and **revert automatically once you restart your computer**. 
+
+Unlike permanent flashing methods that alter physical firmware or NVRAM storage blocks, this script interacts with runtime device properties and active system handles. Because these identifiers are dynamically regenerated or re-enumerated by the Windows Plug and Play (PnP) manager upon boot, a system restart restores the default hardware serial numbers.
 
 ---
 
-## ✨ Features
+## Technical Mechanics & How It Works
 
-*   **⚡ Native Batch Scripting:** Written entirely in lightweight Windows Batch (`.bat`), requiring no external dependencies, runtimes, or compiled binaries.
-*   **🔓 Fully Decrypted Source:** Zero obfuscation or encryption. Every command, query, and operation is fully visible and auditable.
-*   **🎯 Complete Serial Stripping:** Unlike standard methods that leave placeholder or null values, this tool completely removes disk serial numbers from target drives.
-*   **🤖 Lightweight Execution:** Streamlined and fast interface designed for rapid execution and immediate results.
+1. **Runtime Property Stripping:** The script executes native command-line utilities (`cmd`, `wmic`, or registry queries depending on the script's specific implementation structure) to target active storage controller paths and physical disk identifiers.
+2. **Volatile State Modification:** By clearing or unlinking the serial strings from the active device tree during runtime, applications or services querying WMI (Windows Management Instrumentation) or storage device properties during the current session fail to retrieve valid hardware strings.
+3. **Session Lifecycle:** Because the modifications are applied to the active OS kernel/device registry state without modifying the underlying disk firmware, restarting the system forces Windows to re-query the physical hardware, cleanly rebuilding the original serial numbers.
 
 ---
 
-## 📋 System Requirements
+## Features
+
+* **Native Batch Architecture:** Built entirely in standard Windows Batch (`.bat`), requiring no external compiler, runtime environment, or third-party dependencies.
+* **Fully Decrypted & Auditable:** Zero obfuscation or encryption. Every command and execution loop can be inspected directly in any text editor.
+* **Session-Based Action:** Operates entirely within the current boot cycle, ensuring that standard hardware parameters are safely restored upon the next system reboot.
+* **Direct Identifier Targeting:** Focuses specifically on removing disk serial strings rather than leaving static null placeholders.
+
+---
+
+## System Requirements
 
 | Component | Requirement |
 | :--- | :--- |
 | **Operating System** | Windows 10 / Windows 11 (`x64` architecture) |
-| **Permissions** | Full Administrator privileges required |
-| **Script Environment** | Native Windows Command Prompt (`cmd.exe`) |
+| **Permissions** | Full Administrator privileges |
+| **Environment** | Standard Windows Command Prompt (`cmd.exe`) |
 
 ---
 
-## 🚀 Step-by-Step Usage Guide
+## Step-by-Step Usage Guide
 
 > [!IMPORTANT]
-> **Pre-requisite:** Before running the script, ensure your **Windows Defender** and any third-party antivirus software are disabled. Low-level disk management and query scripts frequently trigger false-positive heuristic flags.
+> **Pre-requisite:** Before executing the script, ensure that Windows Defender real-time protection or any third-party antivirus software is temporarily disabled. Low-level storage and registry modification scripts routinely trigger heuristic false positives.
 
-### 1. Extraction / Placement
-Place the script file (`.bat`) into a dedicated working folder on your primary drive.
+### 1. Preparation
+Place the script file into a local working directory on your primary drive. Do not run the script directly from inside a compressed archive or temporary extraction folder.
 
-### 2. Execute as Administrator
-Right-click the batch script and select **Run as Administrator** to ensure it has the necessary permissions to interact with disk subsystems.
+### 2. Administrator Execution
+Right-click the batch file and select **Run as Administrator**. Administrative rights are required to interact with system-level device spaces and storage queries.
 
 ### 3. Execution
-Follow the on-screen prompts within the command-line interface to execute the disk serial stripping sequence.
+Allow the script to process the target disk identifiers. Review the command-line feedback output to confirm successful execution.
 
-### 4. Reboot
-Perform a **complete system restart** immediately after execution to flush the disk cache and ensure changes are registered properly by the OS.
-
----
-
-## 🛠️ Troubleshooting & FAQ
-
-*   **Q: Do I need special dependencies installed to run this?**
-    *   *A:* No. Because it is written entirely in native batch, it runs directly using standard Windows command-line utilities.
-*   **Q: The script closes immediately or throws access errors.**
-    *   *A:* Make sure you are running the script with full Administrator privileges and that real-time antivirus protection is temporarily disabled.
+### 4. Session Persistence Note
+Keep in mind that these changes remain active **only until your next system reboot**. If you shut down or restart your computer, you will need to re-run the script if you require the spoof to be active for the new session.
 
 ---
 
-## ⚖️ Disclaimer & Credits
+## Troubleshooting & FAQ
 
-*   **Developer:** `vizu1234` (GitHub)
-*   **Disclaimer:** This software and its contents are shared for educational, informational, and archival research purposes only. The user assumes full responsibility for any consequences arising from the usage of this script.
+* **Q: Do I need to run this every time I turn on my PC?**
+  * **A:** Yes. Because this is a temporary session spoof, restarting your computer clears the modified runtime state and reloads your original hardware serial numbers from the physical disk firmware.
+* **Q: The script terminates immediately or returns access denied errors.**
+  * **A:** Ensure you are launching the script with full administrator rights and that your antivirus software has not quarantined or blocked the execution process.
+
+---
+
+## Disclaimer & Credits
+
+* **Developer:** `vizu1234` (GitHub)
+* **Disclaimer:** This software and its contents are provided strictly for educational, informational, and research purposes. The user assumes full responsibility for any consequences arising from the execution or usage of this script.
