@@ -1,74 +1,41 @@
-# Driverless-Disk-Spoof (Decrypted Batch Edition)
+# 🛡️ Driverless-Disk-Spoof (Decrypted Batch Edition)
+
+> **⚠️ CRITICAL NOTICE:** This tool operates **completely without drivers** (Driverless). It **completely removes** disk serial identifiers rather than nulling them, and all changes are **temporary**—reverting automatically upon system restart.
 
 ---
 
 ## Overview
 
-This repository hosts the **Driverless-Disk-Spoof**, a fully decrypted Windows batch script designed to strip and clear disk serial identifiers during an active operating system session. 
-
-> [!NOTE]
-> **Important Operating Behavior:** This is a **temporary (session-based)** spoof. The modifications applied by this script exist only within the current running state of the operating system and **revert automatically once you restart your computer**. 
-
-Unlike permanent flashing methods that alter physical firmware or NVRAM storage blocks, this script interacts with runtime device properties and active system handles. Because these identifiers are dynamically regenerated or re-enumerated by the Windows Plug and Play (PnP) manager upon boot, a system restart restores the default hardware serial numbers.
+A fully decrypted Windows batch script designed to strip disk serial numbers during an active system session. Because it operates entirely in runtime memory without kernel drivers or persistent firmware modifications, restarting your PC completely restores your original hardware identifiers.
 
 ---
 
-## Technical Mechanics & How It Works
+## Key Features
 
-1. **Runtime Property Stripping:** The script executes native command-line utilities (`cmd`, `wmic`, or registry queries depending on the script's specific implementation structure) to target active storage controller paths and physical disk identifiers.
-2. **Volatile State Modification:** By clearing or unlinking the serial strings from the active device tree during runtime, applications or services querying WMI (Windows Management Instrumentation) or storage device properties during the current session fail to retrieve valid hardware strings.
-3. **Session Lifecycle:** Because the modifications are applied to the active OS kernel/device registry state without modifying the underlying disk firmware, restarting the system forces Windows to re-query the physical hardware, cleanly rebuilding the original serial numbers.
-
----
-
-## Features
-
-* **Native Batch Architecture:** Built entirely in standard Windows Batch (`.bat`), requiring no external compiler, runtime environment, or third-party dependencies.
-* **Fully Decrypted & Auditable:** Zero obfuscation or encryption. Every command and execution loop can be inspected directly in any text editor.
-* **Session-Based Action:** Operates entirely within the current boot cycle, ensuring that standard hardware parameters are safely restored upon the next system reboot.
-* **Direct Identifier Targeting:** Focuses specifically on removing disk serial strings rather than leaving static null placeholders.
+* **⚡ 100% Driverless:** Requires no kernel-level drivers, vulnerable certificates, or complex loaders.
+* **🎯 Complete Serial Removal:** Strips and unlinks serial strings entirely instead of replacing them with null values or placeholders.
+* **⏱️ Temporary Session Scope:** Active only during the current boot cycle; fully resets upon reboot.
+* **🔓 Fully Decrypted Batch:** Open-source, unencrypted Windows Batch (`.bat`) script for complete code transparency and safety auditing.
 
 ---
 
 ## System Requirements
 
-| Component | Requirement |
-| :--- | :--- |
-| **Operating System** | Windows 10 / Windows 11 (`x64` architecture) |
-| **Permissions** | Full Administrator privileges |
-| **Environment** | Standard Windows Command Prompt (`cmd.exe`) |
+* **Operating System:** Windows 10 / Windows 11 (`x64`)
+* **Permissions:** Administrator privileges (`cmd.exe`)
 
 ---
 
-## Step-by-Step Usage Guide
+## Usage Guide
 
-> [!IMPORTANT]
-> **Pre-requisite:** Before executing the script, ensure that Windows Defender real-time protection or any third-party antivirus software is temporarily disabled. Low-level storage and registry modification scripts routinely trigger heuristic false positives.
-
-### 1. Preparation
-Place the script file into a local working directory on your primary drive. Do not run the script directly from inside a compressed archive or temporary extraction folder.
-
-### 2. Administrator Execution
-Right-click the batch file and select **Run as Administrator**. Administrative rights are required to interact with system-level device spaces and storage queries.
-
-### 3. Execution
-Allow the script to process the target disk identifiers. Review the command-line feedback output to confirm successful execution.
-
-### 4. Session Persistence Note
-Keep in mind that these changes remain active **only until your next system reboot**. If you shut down or restart your computer, you will need to re-run the script if you require the spoof to be active for the new session.
+1. Disable third-party antivirus or Windows Defender real-time protection to prevent false-positive quarantines.
+2. Place the batch script into a local working directory.
+3. Right-click the script and select **Run as Administrator**.
+4. Follow the prompt to clear active session serials.
+5. **Reboot your PC** when finished to restore default system settings.
 
 ---
 
-## Troubleshooting & FAQ
+## Disclaimer
 
-* **Q: Do I need to run this every time I turn on my PC?**
-  * **A:** Yes. Because this is a temporary session spoof, restarting your computer clears the modified runtime state and reloads your original hardware serial numbers from the physical disk firmware.
-* **Q: The script terminates immediately or returns access denied errors.**
-  * **A:** Ensure you are launching the script with full administrator rights and that your antivirus software has not quarantined or blocked the execution process.
-
----
-
-## Disclaimer & Credits
-
-* **Developer:** `vizu1234` (GitHub)
-* **Disclaimer:** This software and its contents are provided strictly for educational, informational, and research purposes. The user assumes full responsibility for any consequences arising from the execution or usage of this script.
+Shared for educational and research purposes only. The user assumes full responsibility for any consequences arising from use.
