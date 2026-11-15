@@ -16,6 +16,7 @@ A fully decrypted Windows batch script created by **vizu1234** to strip disk ser
 * **Complete Serial Removal:** Strips and unlinks serial strings entirely instead of replacing them with null values or placeholders.
 * **Temporary Session Scope:** Active only during the current boot cycle; fully resets upon reboot.
 * **Fully Decrypted Batch:** Open-source, unencrypted Windows Batch (`.bat`) script for complete code transparency and safety auditing.
+* **Disk only:** Its just removing your Disk-Serial-Numbers not your USB-Serial-Numbers.
 
 ---
 
@@ -31,7 +32,7 @@ A fully decrypted Windows batch script created by **vizu1234** to strip disk ser
 1. Disable third-party antivirus or Windows Defender real-time protection to prevent false-positive quarantines.
 2. Place the batch script into a local working directory.
 3. Right-click the script and select **Run as Administrator**.
-4. Follow the prompt to clear active session serials.
+4. Removed your Disk Serials Completely 
 5. **Reboot your PC** when finished to restore default system settings.
 
 ---
